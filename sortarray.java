@@ -3,11 +3,12 @@ public class sortarray{
 	public static void main(String[] args){
 		int[] arr=new int[]{4,3,2,1,7,8,9};
 		
-		mergesort(arr,0,arr.length-1);
+		insertionsort(arr);
 		System.out.println(Arrays.toString(arr));
 	
 	}
 	public static void swap(int[] arr, int a, int b){
+		
 		int temp=arr[a];
 		arr[a]=arr[b];
 		arr[b]=temp;
@@ -40,6 +41,7 @@ public class sortarray{
 					index=j;
 				}
 			}
+			
 			int temp=arr[index];
 			arr[index]=arr[i];
 			arr[i]=temp;

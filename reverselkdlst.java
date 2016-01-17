@@ -34,18 +34,59 @@ public class reverselkdlst{
 		}
 		return fake.next;
 	}
+	public static int backwards(Node head, int k){
+		if(head==null){
+			return head.val;
+		}
+		int count=0;
+		Node fast=head;
+		while(fast!=null){
+			fast=fast.next;
+			count++;
+			if(count==k){
+				break;
+			}
+		}
+		if(count<k){
+			return Integer.MIN_VALUE;
+		}
+		Node curr=head;
+		while(fast.next!=null){
+			fast=fast.next;
+			curr=curr.next;
+		}
+		return curr.val;
+	}
+	public static int middle(Node head){
+		Node fast=head;
+		Node slow=head;
+		while(fast.next != null){
+		          slow = slow.next;
+		          fast = fast.next;
+		          if(fast.next != null){
+		              fast = fast.next;
+		          }
+		      }
+		
+		return slow.val;
+	}
 	public static void main(String[] args){
 		Node head=new Node(1);
 		Node h1=new Node(2);
 		Node h2=new Node(3);
+		Node h3=new Node(4);
+		
 		head.next=h1;
 		h1.next=h2;
-		Node re=reverserecur(head);
-		while(re.next!=null){
-        System.out.println(re.val);
-		re=re.next;
-	    }
-		System.out.println(re.val);
+		h2.next=h3;
+	
+		// Node re=reverserecur(head);
+// 		while(re.next!=null){
+//         System.out.println(re.val);
+// 		re=re.next;
+// 	    }
+// 		System.out.println(re.val);
+System.out.println(middle(head));
 // 		Node r=reverseitr(head);
 // 		System.out.println(r.val);
 	}
