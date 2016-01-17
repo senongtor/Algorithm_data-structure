@@ -5,6 +5,9 @@ class Node{
 		val=data;
 	}
 	public Node(){}
+	public String toString(){
+		return "VAL:"+Integer.toString(val);
+	}	
 }
 
 public class reverselkdlst{
@@ -12,6 +15,7 @@ public class reverselkdlst{
 		if(head==null||head.next==null) return head;
 		Node t=reverserecur(head.next);		
 		head.next.next=head;
+		head.next=null;
 		return t;
 	}
 
@@ -36,8 +40,12 @@ public class reverselkdlst{
 		Node h2=new Node(3);
 		head.next=h1;
 		h1.next=h2;
-		// Node re=reverserecur(head);
-// 		System.out.println(re.val);
+		Node re=reverserecur(head);
+		while(re.next!=null){
+        System.out.println(re.val);
+		re=re.next;
+	    }
+		System.out.println(re.val);
 // 		Node r=reverseitr(head);
 // 		System.out.println(r.val);
 	}
