@@ -40,6 +40,29 @@ public class tree{
 		
 		return l;
 	}
+	public static int kthelt(Node root,int k){
+		Stack<Node> s=new Stack<Node>();
+		int l=0;
+		Node p=root;
+		int count=0;
+		while(p!=null||!s.isEmpty()){
+			if(p!=null){
+				s.push(p);
+				p=p.left;
+			}
+			else{
+				Node t=s.pop();
+				
+				l=t.data;
+				count++;
+				if(count==k){
+					return l;
+				}
+				p=t.right;
+			}
+		}
+		return -1;
+	}
 	public static List<Integer> preorderTraversalit(Node root) {
 	        List<Integer> l=new LinkedList<Integer>();
 	        if(root==null){
@@ -128,17 +151,17 @@ public class tree{
 	        Collections.reverse(l);
 	        return l;
 	    }
-		public int maxDepth(TreeNode root){
+		public int maxDepth(Node root){
 		        if(root==null){
 		            return 0;
 		        }
 		        return Math.max(maxDepth(root.left)+1,maxDepth(root.right)+1);
 		    }
-		    public boolean isBalanced(TreeNode root) {
+		    public boolean isBalanced(Node root) {
 		        if(root==null){
 		            return true;
 		        }
-		        TreeNode curr=root;
+		        Node curr=root;
         
 		            int diff=Math.abs(maxDepth(curr.left)-maxDepth(curr.right));
                 
@@ -167,11 +190,12 @@ public class tree{
 		// while(it.hasNext()){
 		// 	System.out.println(it.next());
 		// }
-		List<Integer> list=new LinkedList<Integer>();
-		list=preorderTraversalit(root);
-		System.out.println(list); 
+		// List<Integer> list=new LinkedList<Integer>();
+// 		list=preorderTraversalit(root);
+		// System.out.println(list);
 		// List<Integer> li=iterative(root);
 // 		System.out.println(li);
+System.out.println(kthelt(root, 4));
 	}
 	
 	
