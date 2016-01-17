@@ -1,3 +1,7 @@
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 public class numberofislands{
 	//2-d
 	public void bfs(char[][] grid, int i, int j){
@@ -39,7 +43,7 @@ public class numberofislands{
 				if(r[i].equals("1"))
 				count++;
 			}
-			return= count;
+			return count;
 		}
 		public static int nofi2(String s){
 		    String pattern="(1+)";
@@ -64,5 +68,9 @@ public class numberofislands{
 			}
 		}
 		return count;
+	}
+	public static void main(String[] args){
+		String s="00101001";
+		System.out.println(nofi3(s));
 	}
 }
