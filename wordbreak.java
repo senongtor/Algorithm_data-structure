@@ -1,6 +1,6 @@
 import java.util.*;
 public class wordbreak{
-	public static boolean bbreak(String s, Set<String> wordDict) {
+	public static boolean wbreak(String s, Set<String> wordDict) {
 	    Iterator<String> it=wordDict.iterator();
 	           String t="";
 	           while(it.hasNext()){
@@ -19,7 +19,7 @@ public class wordbreak{
 		String num="A man, a plan, a canal: Panama";
 		num=num.replaceAll("[^a-zA-Z]","").toLowerCase();
 		System.out.println(num);
-		// System.out.println(bbreak(s,word));
+		// System.out.println(wbreak(s,word));
 // 		String a="fit";
 // 		String b="bit";
 // 		System.out.println(a.replaceAll("["+b+"]",""));
