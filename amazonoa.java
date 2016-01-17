@@ -1,5 +1,5 @@
 import java.util.*;
-public class selectionsort{
+public class amazonoa{
 	public static void select(int[] arr){ 
 		for(int i=0;i<arr.length;i++){
 			int index=i;
@@ -110,6 +110,56 @@ public class selectionsort{
 		}
 		}
 	}
+	public static int[] sort2(int a,int b, int c){
+		int[] s=new int[3];
+		int sum=a+b+c;
+		s[0]=Math.min(a,Math.min(b,c));
+		s[2]=Math.max(a,Math.max(b,c));
+		s[1]=sum-s[0]-s[2];
+		return s;
+	}
+	public static int[] sort(int a,int b, int c){
+		int[] s=new int[3];
+		if(a<b){
+			if(b<=c){
+				s[0]=a;
+				s[1]=b;
+				s[2]=c;
+			}
+			else{
+				if(a<c){
+					s[0]=a;
+					s[1]=c;
+					s[2]=b;
+				}
+				else{
+					s[0]=c;
+					s[1]=a;
+					s[2]=b;
+				}
+			}
+		}
+		else{
+			if(b>c){
+				s[0]=c;
+				s[1]=b;
+				s[2]=a;
+			}
+			else{
+				if(a<c){
+					s[0]=b;
+					s[1]=a;
+					s[2]=c;
+				}
+				else{
+					s[0]=b;
+					s[1]=c;
+					s[2]=a;
+				}
+			}
+		}	
+		return s;
+	}
 	public static void main(String[] args){
 		int[] arr=new int[]{3,1,5,12,23,7,9};
 		printpattern(2);
@@ -121,6 +171,7 @@ public class selectionsort{
 // 			result[i]=temp;
 // 		}
 		// System.out.println(Arrays.toString(sortArray(arr)));
+		System.out.println(Arrays.toString(sort2(3,5,4)));
  	}
 
 }
