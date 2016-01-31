@@ -40,6 +40,32 @@ public class tree{
 		
 		return l;
 	}
+	public static Node inordersucrec(Node root, Node target){
+	    if (root == null || p == null) {
+	               return null;
+	    }
+		if(root!=null){
+			if(root.data>target){
+				return inordersucrec(root.left,target)==null?root:inordersucrec(root.left,target);
+			}
+			 return inordersucrec(root.right, target);
+		}
+	}
+	public static Node inordersuc(Node root, Node target){
+		if(root==null || target==null){
+			return null;
+		}
+		Node re=new Node();
+		while(root!=null){
+			if(root.data>target){
+				res=root
+				root=root.left;
+			}
+			else{
+				root=root.right;
+			}
+		}
+	}
 	public static int kthelt(Node root,int k){
 		Stack<Node> s=new Stack<Node>();
 		int l=0;
@@ -109,7 +135,42 @@ public class tree{
 		}
 		return currbest;
 	}
-	
+	public static int getdist(Node root, Node a){
+		if(root==null){
+			return -1;
+		}
+		return disfromroot(root,a);
+	}
+	public static int disfromroot(Node root, Node a){
+		
+		if (root != null) {
+					int x = 0;
+					if ((root.data == a.data) || (x = disfromroot(root.left, a)) > 0
+							|| (x = disfromroot(root.right, a)) > 0) {
+						return x + 1;
+
+					}
+					return 0;
+				}
+				return 0;
+	}
+	public static Node LCA(Node root, Node p, Node q){
+		if(root==null||p==null||q==null){
+			return root;
+		}
+		Node l=LCA(root.left, p,q);
+		Node r=LCA(root.right, p,q);
+		if(l!=null && r!=null){
+			return root;
+		}
+		if(l!=null){
+			return l;
+		}
+		if(r!=null){
+			return r;
+		}
+		return null;
+	}
 	public static int findclosestit(Node root,int target){
 		
 		if(root==null){
@@ -169,21 +230,43 @@ public class tree{
 		            return diff<=1 && isBalanced(root.left) && isBalanced(root.right);
         
 		    }
+			// public static int distance(Node root, Node a, Node b){
+//
+// 			}
+public static int maxsum(Node root){
+	    if(root.left==null&&root.right==null){
+			return root.data;
+		}
+		if(root.left==null&&root.right!=null){
+			return Math.max(sum(root),sum(root.right));
+		}
+		if(root.right==null&&root.left!=null){
+			return Math.max(sum(root), sum(root.left));
+		}
+	return Math.max(Math.max(sum(root),sum(root.left)),sum(root.right));
+}
+public static int sum(Node root){
+	if(root==null){
+		return 0;
+	}
+	int l=sum(root.left);
+	int r=sum(root.right);
+	return l+r+root.data;
+}
 	public static void main(String[] args){
 	
-		Node root=new Node(8);
-		Node l=new Node(4);
+		Node root=new Node(-100);
+		Node l=new Node(-10);
 		root.left=l;
-		Node r=new Node(13);
-		root.right=r;
-		Node ll=new Node(1);
-		l.left=ll;
-		Node lr=new Node(5);
-		l.right=lr;
-		Node rl=new Node(9);
-		r.left=rl;
-		Node rr=new Node(16);
-		r.right=rr; 
+		
+		root.right=null;
+		
+		// Node lr=new Node(105);
+// 		l.right=lr;
+// 		Node rl=new Node(-9);
+// 		r.left=rl;
+// 		Node rr=new Node(-16);
+// 		r.right=rr;
 		// result=iterative(root);
 		// System.out.println(result.size());
 		// Iterator<Integer> it=result.iterator();
@@ -195,7 +278,8 @@ public class tree{
 		// System.out.println(list);
 		// List<Integer> li=iterative(root);
 // 		System.out.println(li);
-System.out.println(kthelt(root, 4));
+// System.out.println(kthelt(root, 4));
+System.out.println(maxsum(root));
 	}
 	
 	

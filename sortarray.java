@@ -3,7 +3,7 @@ public class sortarray{
 	public static void main(String[] args){
 		int[] arr=new int[]{4,3,2,1,7,8,9};
 		
-		insertionsort(arr);
+		quicksort(arr,0,6);
 		System.out.println(Arrays.toString(arr));
 	
 	}

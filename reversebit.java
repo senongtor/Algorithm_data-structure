@@ -1,3 +1,4 @@
+import java.util.*;
 public class reversebit{
 	public static int reverseBits(int n) {
 		for (int i = 0; i < 16; i++) {
@@ -27,8 +28,19 @@ public class reversebit{
 		}
 		return true;
 	}
+
 	public static void main(String[] args){
-		System.out.println(reverseBits(8));
-		System.out.println(ispalin(10));
+		// System.out.println(reverseBits(8));
+// 		System.out.println(ispalin(10));
+		BitSet s=new BitSet(10);
+		BitSet sp=new BitSet(10);
+		for(int i=0;i<10;i++){
+			s.set(i);
+		}
+		for(int i=0;i<10;i+=2){
+			sp.set(i);
+		}
+		sp.xor(s);
+		System.out.println(sp);
 	}
 }

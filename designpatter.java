@@ -31,6 +31,14 @@ class shapefac{
 		return null;
 	}
 }
+//singleton pattern
+class singleobj{
+	private static singleobj instance=new singleobj();
+	private singleobj(){}
+	public static singleobj getinstance(){
+		return instance;
+	}	
+}
 //template pattern
 abstract class Game{
 	abstract void initialize();
@@ -66,6 +74,9 @@ public class designpatter{
 	shapefac fac=new shapefac();
 	Shape triangle=fac.getshape("Triangle");
 	triangle.draw();
+	
+	//singleton call
+	singleobj o=singleobj.getinstance();
 	
 	//template call
 	Game game=new Football();

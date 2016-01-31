@@ -1,6 +1,82 @@
 import java.util.*;
 	 public class stringop{
 		 //remove duplicate in a string of alphabets
+		 public static int countwords(String s){
+			 int count=0;
+			 if(Character.isLetter(s.charAt(0))){
+				 count=1;
+			 }
+			 for(int i=1;i<s.length();i++){
+				 if(!Character.isLetter(s.charAt(i-1))&& Character.isLetter(s.charAt(i))){
+					 count++;
+				 }
+			 }
+			 return count;
+		 }
+		 public static LinkedList<String> findneighbor(String s, Set<String> word){
+		         LinkedList<String> re=new LinkedList<String>();
+		         Iterator<String> it=word.iterator();
+		         while(it.hasNext()){
+					 String t=it.next();
+		             if(t.length()==s.length()&&s.replaceAll("["+t+"]","").length()==1){
+		                 re.add(t);
+				     }
+		         }
+		         return re;
+		     }
+			 public static int ladderLength(String beginWord, String endWord, Set<String> wordList) {
+				 wordList.add(endWord);
+			         Queue<String> q=new LinkedList<String>();
+			         HashSet<String> visited=new HashSet<String>();
+			         int len=0;
+			         q.offer(beginWord);
+			         visited.add(beginWord);
+			         while(!q.isEmpty()){
+			             int currsize=q.size();
+			             for(int i=0;i<currsize;i++){
+			             String curr=q.poll();
+			             if(curr.equals(endWord)){
+			                 return len+1;
+			             }
+			             LinkedList<String> tmp=findneighbor(curr, wordList);
+			             while(!tmp.isEmpty()){
+			                 String t=tmp.removeLast();
+			                 if(!visited.contains(t)){
+			                     q.add(t);
+			                     visited.add(t);
+			                 }
+			             }
+			             }
+			             len++;
+			         }
+			         return 0;
+			     }
+				 
+				 
+				 
+				 public static void ana(String s, String t, List<String> re){
+					 if(t.length()==s.length()){
+						 re.add(t);
+						 return;
+					 }
+					 for(int i=0;i<s.length();i++){
+						 if(t.contains(Character.toString(s.charAt(i)))){
+							 continue;
+						 }
+						 t=t+s.charAt(i);
+						 ana(s, t, re);
+						 t=t.substring(0,t.length()-1);
+					 }
+				 }
+				 public static List<String> allanagram(String s){
+					 List<String> re=new LinkedList<String>();
+					 if(s==null||s.length()==0){
+						 return re;
+					 }
+					 String t="";
+					 ana(s, t, re);
+					 return re;
+				 }
 	    public static String removeDuplicateLetters(String s) {
 	        int[] arr=new int[26];
 	        for(int i=0;i<s.length();i++){
@@ -71,6 +147,7 @@ import java.util.*;
 			        j--;
 			    }
 			    return true;
+			}
 	    public static boolean isanagram(String a, String b){
 	   	 if(a.length()!=b.length()){
 	   		 return false;
@@ -116,9 +193,20 @@ import java.util.*;
 		public static void main(String[] args){
 			String a="bbssqa";
 			String a1="afbc";
-			String b1="bafbc";
+			String b1="d";
+			System.out.println(a1.replaceAll("[^"+b1+"]",""));
 			String v="A man, a plan, a canal: Panama";
-			System.out.println(validPalindrome(v));
+			Set<String> word=new HashSet<String>();
+			word.add("hot");
+			word.add("dot");
+			word.add("dog");
+			word.add("log");
+			word.add("lot");
+			
+			
+			// System.out.println(ladderLength("hit","cog",word));
+			System.out.println(allanagram("asf"));
+			// System.out.println(countwords(v));
 			// System.out.println(isAnagram(a1,b1));
 			// System.out.println(removeDuplicateLetters(a));
 // 			System.out.println(reverseString(a));

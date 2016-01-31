@@ -1,4 +1,3 @@
-package leetcode;
 
 import java.util.ArrayList;
 
@@ -15,14 +14,14 @@ import java.util.ArrayList;
  * ]
  */
 public class Combinations {
-	public ArrayList<ArrayList<Integer>> combine(int n, int k) {
+	public static ArrayList<ArrayList<Integer>> combine(int n, int k) {
 		ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		combinehelper(n, 1, k, list, res);
 		return res;
 	}
 
-	public void combinehelper(int n, int start, int k, ArrayList<Integer> list, ArrayList<ArrayList<Integer>> res) {
+	public static void combinehelper(int n, int start, int k, ArrayList<Integer> list, ArrayList<ArrayList<Integer>> res) {
 		if (list.size() == k) {
 			res.add(new ArrayList<Integer>(list));
 			return;
@@ -32,5 +31,8 @@ public class Combinations {
 			combinehelper(n, i + 1, k, list, res);
 			list.remove(list.size() - 1);
 		}
+	}
+	public static void main(String[] args){
+		System.out.println(combine(5,4));
 	}
 }

@@ -70,23 +70,37 @@ public class reverselkdlst{
 		
 		return slow.val;
 	}
+	    public static boolean isPalindrome(Node head) {
+	        if(head==null){
+	            return false;
+	        }
+	        String s="";
+	        String rever="";
+	        while(head!=null){
+	            s=s+Integer.toString(head.val);
+	            rever=Integer.toString(head.val)+rever;
+	            head=head.next;
+	        }
+	        return s.equals(rever)? true:false;
+	    }
 	public static void main(String[] args){
 		Node head=new Node(1);
 		Node h1=new Node(2);
-		Node h2=new Node(3);
-		Node h3=new Node(4);
+		Node h2=new Node(2);
+		Node h3=new Node(1);
 		
 		head.next=h1;
 		h1.next=h2;
 		h2.next=h3;
 	
+		System.out.println(isPalindrome(head));
 		// Node re=reverserecur(head);
 // 		while(re.next!=null){
 //         System.out.println(re.val);
 // 		re=re.next;
 // 	    }
 // 		System.out.println(re.val);
-System.out.println(middle(head));
+// System.out.println(middle(head));
 // 		Node r=reverseitr(head);
 // 		System.out.println(r.val);
 	}
