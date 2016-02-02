@@ -50,6 +50,7 @@ public class longestpalindromesubstring{
 	            }
 	        }
 	        return t;
+		}
 		public String lpsdp(String s){
 			if(s.length()==0||s==null){
 			            return s;
@@ -76,5 +77,9 @@ public class longestpalindromesubstring{
 	public static void main(String[] args){
 		String str="adpxhda";
 		System.out.println(length(str));
+		String a="aasas";
+		String b="abc";
+		String c=a.replaceAll("[^"+b+"]","");
+		System.out.println(c);
 	}
 }
