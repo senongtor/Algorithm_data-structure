@@ -21,8 +21,8 @@ public class reverselkdlst{
 
 	public static Node reverseitr(Node head){
 		if(head==null||head.next==null){
-							return head; 
-						}
+			return head; 
+	    }
 		Node temp=head;
 		Node curr=head;
 		Node fake=new Node(-1);
@@ -70,7 +70,63 @@ public class reverselkdlst{
 		
 		return slow.val;
 	}
-	    public static boolean isPalindrome(Node head) {
+	public static boolean isPalindromerev(Node head){
+	    if(head==null){
+	               return true;
+	           }
+	           Node fast=head;
+	           Node slow=head;
+	           Node fakehead=new Node(-1);
+	           fakehead.next=head;
+	           int count=0;
+	           while(fast.next!=null){
+	               fast=fast.next;
+	               slow=slow.next;
+	               fakehead=fakehead.next;
+	               count++;
+	               if(fast.next!=null){
+	                   fast=fast.next;
+	                   count++;
+	               }
+	           }
+	           if(count%2==0){
+	               fakehead.next=null;
+	           }
+	           else{
+	               slow=slow.next;
+	               fakehead.next=null;
+	           }
+			   Node newh=reverserecur(slow);
+			   Node traverse=newh;
+	           Node h=head;
+	           while(traverse!=null){
+	               if(traverse.val!=h.val) return false;
+	               slow = traverse.next;
+	               h = h.next;
+	           }
+	           return true;
+		// Node record=head;
+// 		Node tra=head;
+// 		Node trar=record;
+// 		while(tra!=null){
+// 			trar.next=tra.next;
+// 		}
+// 		Node rev=reverserecur(head);
+// 		Node a=record;
+// 		Node b=rev;
+// 		while(a!=null||b!=null){
+// 			if(a==null||b==null){
+// 				return false;
+// 			}
+// 			if(a.val!=b.val){
+// 				return false;
+// 			}
+// 			a=a.next;
+// 			b=b.next;
+// 		}
+// 		return true;
+	}
+	    public static boolean isPalindromestr(Node head) {
 	        if(head==null){
 	            return false;
 	        }
@@ -86,6 +142,7 @@ public class reverselkdlst{
 	public static void main(String[] args){
 		Node head=new Node(1);
 		Node h1=new Node(2);
+		
 		Node h2=new Node(2);
 		Node h3=new Node(1);
 		
@@ -93,7 +150,7 @@ public class reverselkdlst{
 		h1.next=h2;
 		h2.next=h3;
 	
-		System.out.println(isPalindrome(head));
+		System.out.println(isPalindromerev(head));
 		// Node re=reverserecur(head);
 // 		while(re.next!=null){
 //         System.out.println(re.val);

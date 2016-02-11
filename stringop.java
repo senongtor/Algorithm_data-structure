@@ -96,6 +96,7 @@ import java.util.*;
 		        if(str.length() == 1){
 		            return str;
 		        } 
+				
 		            return (str.charAt(str.length()-1)+reverseString(str.substring(0,str.length()-1)));
 		    }
 		public static boolean ispalindrome(String str){

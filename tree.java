@@ -8,11 +8,33 @@ class Node{
 	 data=val;
  }
  public Node(){}
+	 // public String toString(){
+ // 	 return "<" +tostring(this) + ">";
+ // 	 }
+ // 	public String tostring(Node r){
+ // 		if(r==null){
+ // 			return "";
+ // 		}
+ // 		return tostring(left)+Integer.toString(data)+tostring(right);
+ // 	}
 }
 
 public class tree{
 	private static List<Integer> result;
-	
+	private static String toString(Node root)
+	{
+	    String result = "";
+	    if (root == null)
+	        return "";
+		result += "[";
+	    result += toString(root.left);
+		result += ",";
+		result += Integer.toString(root.data);
+		result += ",";
+	    result += toString(root.right);
+	    result += "]";
+	    return result;
+	}
 	public static void inordertraversal(Node root,List<Integer> l){
 		if(root==null){
 			return;
@@ -40,32 +62,32 @@ public class tree{
 		
 		return l;
 	}
-	public static Node inordersucrec(Node root, Node target){
-	    if (root == null || p == null) {
-	               return null;
-	    }
-		if(root!=null){
-			if(root.data>target){
-				return inordersucrec(root.left,target)==null?root:inordersucrec(root.left,target);
-			}
-			 return inordersucrec(root.right, target);
-		}
-	}
-	public static Node inordersuc(Node root, Node target){
-		if(root==null || target==null){
-			return null;
-		}
-		Node re=new Node();
-		while(root!=null){
-			if(root.data>target){
-				res=root
-				root=root.left;
-			}
-			else{
-				root=root.right;
-			}
-		}
-	}
+	// public static Node inordersucrec(Node root, Node target){
+// 	    if (root == null || target == null) {
+// 	               return null;
+// 	    }
+// 		if(root!=null){
+// 			if(root.data>target.data){
+// 				return inordersucrec(root.left,target)==null?root:inordersucrec(root.left,target);
+// 			}
+// 			 return inordersucrec(root.right, target);
+// 		}
+// 	}
+// 	public static Node inordersuc(Node root, Node target){
+// 		if(root==null || target==null){
+// 			return null;
+// 		}
+// 		Node re=new Node();
+// 		while(root!=null){
+// 			if(root.data>target.data){
+// 				res=root.data;
+// 				root=root.left;
+// 			}
+// 			else{
+// 				root=root.right;
+// 			}
+// 		}
+// 	}
 	public static int kthelt(Node root,int k){
 		Stack<Node> s=new Stack<Node>();
 		int l=0;
@@ -259,7 +281,7 @@ public static int sum(Node root){
 		Node l=new Node(-10);
 		root.left=l;
 		
-		root.right=null;
+		root.right=new Node(110);
 		
 		// Node lr=new Node(105);
 // 		l.right=lr;
@@ -279,7 +301,7 @@ public static int sum(Node root){
 		// List<Integer> li=iterative(root);
 // 		System.out.println(li);
 // System.out.println(kthelt(root, 4));
-System.out.println(maxsum(root));
+System.out.println(toString(root));
 	}
 	
 	
