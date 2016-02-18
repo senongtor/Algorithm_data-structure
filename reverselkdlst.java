@@ -150,7 +150,9 @@ public class reverselkdlst{
 		h1.next=h2;
 		h2.next=h3;
 	
-		System.out.println(isPalindromerev(head));
+		// System.out.println(isPalindromerev(head));
+		if((27&1)==1){
+		System.out.println("Yes");}
 		// Node re=reverserecur(head);
 // 		while(re.next!=null){
 //         System.out.println(re.val);

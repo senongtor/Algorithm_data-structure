@@ -33,6 +33,6 @@ public class Combinations {
 		}
 	}
 	public static void main(String[] args){
-		System.out.println(combine(5,4));
+		System.out.println(combine(2,2));
 	}
 }
