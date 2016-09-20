@@ -193,6 +193,34 @@ public class tree{
 		}
 		return null;
 	}
+	public static int getmin(Node root){
+		if(root.left==null){
+			return root.data;
+		}
+		while(root.left!=null){
+			root=root.left;
+		}
+		return root.data;
+	}
+	public static int inordersuccessor(Node target, Node root){
+		if(target.right!=null){
+			return getmin(target.right);
+		}
+		Node succ=new Node();
+		while(root!=null){
+			if(root.data>target.data){
+				succ=root;
+				root=root.left;
+			}
+			else if(root.data<target.data){
+				root=root.right;
+			}
+			else{
+				break;
+			}
+		}
+		return succ.data;
+	}
 	public static int findclosestit(Node root,int target){
 		
 		if(root==null){
@@ -277,11 +305,20 @@ public static int sum(Node root){
 }
 	public static void main(String[] args){
 	
-		Node root=new Node(-100);
-		Node l=new Node(-10);
+		Node root=new Node(8);
+		Node l=new Node(5);
 		root.left=l;
 		
-		root.right=new Node(110);
+		Node r=new Node(12);
+		root.right=r;
+		Node ll=new Node(3);
+		Node lr=new Node(7);
+		l.left=ll;
+		l.right=lr;
+		Node rl=new Node(9);
+		r.left=rl;
+		
+		System.out.println(inordersuccessor(rl,root));
 		
 		// Node lr=new Node(105);
 // 		l.right=lr;
@@ -301,7 +338,7 @@ public static int sum(Node root){
 		// List<Integer> li=iterative(root);
 // 		System.out.println(li);
 // System.out.println(kthelt(root, 4));
-System.out.println(toString(root));
+// System.out.println(toString(root));
 	}
 	
 	
