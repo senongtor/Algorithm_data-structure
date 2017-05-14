@@ -35,6 +35,7 @@ public class tree{
 	    result += "]";
 	    return result;
 	}
+
 	public static void inordertraversal(Node root,List<Integer> l){
 		if(root==null){
 			return;
@@ -47,7 +48,7 @@ public class tree{
 		Stack<Node> s=new Stack<Node>();
 		List<Integer> l=new LinkedList<Integer>();
 		Node p=root;
-		
+
 		while(p!=null||!s.isEmpty()){
 			if(p!=null){
 				s.push(p);
@@ -59,10 +60,10 @@ public class tree{
 				p=t.right;
 			}
 		}
-		
+
 		return l;
 	}
-	// public static Node inordersucrec(Node root, Node target){
+// public static Node inordersucrec(Node root, Node target){
 // 	    if (root == null || target == null) {
 // 	               return null;
 // 	    }
@@ -73,21 +74,7 @@ public class tree{
 // 			 return inordersucrec(root.right, target);
 // 		}
 // 	}
-// 	public static Node inordersuc(Node root, Node target){
-// 		if(root==null || target==null){
-// 			return null;
-// 		}
-// 		Node re=new Node();
-// 		while(root!=null){
-// 			if(root.data>target.data){
-// 				res=root.data;
-// 				root=root.left;
-// 			}
-// 			else{
-// 				root=root.right;
-// 			}
-// 		}
-// 	}
+
 	public static int kthelt(Node root,int k){
 		Stack<Node> s=new Stack<Node>();
 		int l=0;
@@ -100,7 +87,7 @@ public class tree{
 			}
 			else{
 				Node t=s.pop();
-				
+
 				l=t.data;
 				count++;
 				if(count==k){
@@ -133,22 +120,22 @@ public class tree{
 	        return l;
 	    }
 	public static int findclosest(Node root,int target){
-		
+
 		if(root.left==null&&root.right==null){
 			return root.data;
 		}
 		int currbest=root.data;
+		System.out.format("%d.1\n",root.data);
 		while(root!=null){
-			if(root.data==target){
-				currbest=root.data;
-			}
+			System.out.format("%d.2\n",root.data);
 			if(root.data>target){
 				if(root.data-target<Math.abs(currbest-target)){
 					currbest=root.data;
 				}
 				root=root.left;
 			}
-			if(root.data<target){
+			else if(root.data<target){
+				System.out.format("%d.3\n",root.data);
 				if(target-root.data<Math.abs(currbest-target)){
 					currbest=root.data;
 				}
@@ -164,7 +151,7 @@ public class tree{
 		return disfromroot(root,a);
 	}
 	public static int disfromroot(Node root, Node a){
-		
+
 		if (root != null) {
 					int x = 0;
 					if ((root.data == a.data) || (x = disfromroot(root.left, a)) > 0
@@ -202,6 +189,36 @@ public class tree{
 		}
 		return root.data;
 	}
+  public static boolean path(Node root, int sum){
+    System.out.println(sum);
+        if(root==null && sum==0){
+            return true;
+        }
+        if(root==null && sum!=0){
+            return false;
+        }
+        return path(root.left,sum-root.data)||path(root.right,sum-root.data);
+    }
+    public static boolean hasPathSum(Node root, int sum) {
+        if(root==null){
+            return false;
+        }
+        return path(root,sum);
+    }
+  // public static Node inordersuccessorParen(Node target){
+  //   if(target==null){
+  //     return null;
+  //   }
+  //   if(target.right!=null){
+  //     return getmin(target.right);
+  //   }
+  //   Node paren=target.parent;
+  //   while(paren!=null && paren.right==target){
+  //     target=paren;
+  //     paren=paren.parent;
+  //   }
+  //   return paren;
+  // }
 	public static int inordersuccessor(Node target, Node root){
 		if(target.right!=null){
 			return getmin(target.right);
@@ -222,13 +239,13 @@ public class tree{
 		return succ.data;
 	}
 	public static int findclosestit(Node root,int target){
-		
+
 		if(root==null){
 			return Integer.MAX_VALUE;
 		}
 		int left=findclosestit(root.left,target);
 		int right=findclosestit(root.right,target);
-		
+
 		int result=0;
 		if(Math.abs(root.data-target)<=Math.abs(left-target) && Math.abs(root.data-target)<=Math.abs(right-target)){
 			result=root.data;
@@ -273,12 +290,12 @@ public class tree{
 		            return true;
 		        }
 		        Node curr=root;
-        
+
 		            int diff=Math.abs(maxDepth(curr.left)-maxDepth(curr.right));
-                
-            
+
+
 		            return diff<=1 && isBalanced(root.left) && isBalanced(root.right);
-        
+
 		    }
 			// public static int distance(Node root, Node a, Node b){
 //
@@ -304,22 +321,28 @@ public static int sum(Node root){
 	return l+r+root.data;
 }
 	public static void main(String[] args){
-	
-		Node root=new Node(8);
-		Node l=new Node(5);
-		root.left=l;
-		
-		Node r=new Node(12);
-		root.right=r;
-		Node ll=new Node(3);
-		Node lr=new Node(7);
-		l.left=ll;
-		l.right=lr;
-		Node rl=new Node(9);
-		r.left=rl;
-		
-		System.out.println(inordersuccessor(rl,root));
-		
+		Node root=new Node(1);
+    Node r=new Node(2);
+    root.left=r;
+		// Node right=new Node(8);
+		// root.right=right;
+		// System.out.println(findclosest(root,3));
+    System.out.println(hasPathSum(root,1));
+		// Node root=new Node(8);
+// 		Node l=new Node(5);
+// 		root.left=l;
+//
+// 		Node r=new Node(12);
+// 		root.right=r;
+// 		Node ll=new Node(3);
+// 		Node lr=new Node(7);
+// 		l.left=ll;
+// 		l.right=lr;
+// 		Node rl=new Node(9);
+// 		r.left=rl;
+//
+// 		System.out.println(inordersuccessor(rl,root));
+
 		// Node lr=new Node(105);
 // 		l.right=lr;
 // 		Node rl=new Node(-9);
@@ -340,7 +363,7 @@ public static int sum(Node root){
 // System.out.println(kthelt(root, 4));
 // System.out.println(toString(root));
 	}
-	
-	
-	
+
+
+
 }

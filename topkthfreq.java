@@ -25,13 +25,13 @@ public class topkthfreq{
 				freq.put(a,freq.get(a)+1);
 			}
 		}
-		
+
 		Comparator<Entry<Integer, Integer>> cmp = new Comparator<Entry<Integer, Integer>>(){
 		    public int compare(Entry<Integer, Integer> e1, Entry<Integer, Integer> e2){
 		      return e2.getValue() - e1.getValue();
 		    }
 		  };
-		
+
 		  Queue<Entry<Integer, Integer>> q = new PriorityQueue<Entry<Integer, Integer>>(freq.size(), cmp);
 		  for(Map.Entry<Integer,Integer> e:freq.entrySet()){
 			  q.add(e);

@@ -7,7 +7,9 @@ class Node{
 		data=dat;
 	}
 	public Node(){}
-	
+	public String toString(){
+		return String.format("%c",this.data);
+	}
 }
 public class ternerytotree{
 	private static String toString(Node root)
@@ -16,36 +18,38 @@ public class ternerytotree{
 	    if (root == null)
 	        return "";
 	    result += toString(root.left);
-		result += ",";
-		result += Character.toString(root.data);
-		result += ",";
+			result += ",";
+			result += Character.toString(root.data);
+			result += ",";
 	    result += toString(root.right);
 	    result += ",";
 	    return result;
 	}
     public static Node convert(String s){
-		Node root = new Node(s.charAt(0));  
-		    Node n = root;  
-		    Stack<Node> stack =  new Stack<Node>();  
-		    for (int i = 1; i < s.length(); i += 2) {  
-		        if (s.charAt(i) == '?') {  
-		            n.left = new Node (s.charAt(i + 1));  
-		            stack.add(n);  
-		            n = n.left;  
-  
-		        }  
-		        else if (s.charAt(i) == ':') {  
-		            n = stack.pop();  
-		                        
-		            n.right = new Node (s.charAt(i+1));  
-		             
-		            n = n.right;  
-		        }  
-		    }  
-		    return root;  
+				if(s.length()==0){
+					return null;
+				}
+				Stack<Node> stack=new Stack<Node>();
+				Node root=new Node(s.charAt(0));
+				stack.push(root);
+				for(int i=1;i<s.length()-1;i+=2){
+					Node n=new Node(s.charAt(i+1));
+					if(s.charAt(i)=='?'){
+						stack.peek().left=n;
+					}
+					if(s.charAt(i)==':'){
+						stack.pop();
+						while(stack.peek().right!=null){
+							stack.pop();
+						}
+						stack.peek().right=n;
+					}
+					stack.push(n);
+				}
+		    return root;
     }
 	public static void main(String[] args){
 		String s="a?b?c:d:e";
-		System.out.println(toString(convert(s)));
+		System.out.println(convert(s));
 	}
 }

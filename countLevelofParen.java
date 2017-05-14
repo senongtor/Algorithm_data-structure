@@ -3,7 +3,7 @@ public class countLevelofParen{
 	public static void main(String[] args){
 		int leftCount=0;
 		int count=0;
-		String test="(1+(2+(3)))";		
+		String test="(1+2)(11+3)";		
 		for(char ch:test.toCharArray()){
 			if(ch=='('){
 				leftCount++;
